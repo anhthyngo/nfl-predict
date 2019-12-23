@@ -1,5 +1,6 @@
 __MACOSX/*
-.ipynb_checkpoints/*
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
 *.pyc
 *.pyo
 
