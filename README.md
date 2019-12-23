@@ -1,6 +1,6 @@
 # Predicting Offensive Playcalls in the NFL
 
-<img src="https://github.com/anhthyngo/Predicting-Offensive-Playcalls-in-the-NFL/blob/master/img/td-cele.gif " width="700">
+<img src="https://github.com/anhthyngo/Predicting-Offensive-Playcalls-in-the-NFL/blob/master/img/td-cele.gif " width="800">
 
 Winning football games is the most important job for clubs around the NFL to prepare for. Front office staff makes strategic draft decisions, coaches make adaptive playbooks, and players undergo grueling off-season training all towards the goal of winning the Super Bowl. Teams average about 70 offensive plays every game, and opposing defensive coordinators have to be prepared for any play thrown at them. 
 
