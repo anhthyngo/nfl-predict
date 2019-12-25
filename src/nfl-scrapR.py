@@ -36,8 +36,6 @@ def get_gameinfo(url):
     import requests
     import pandas
 
-
-
     try:
         r = requests.get(url)
         ## work around comments
@@ -64,9 +62,6 @@ def get_gameinfo(url):
         data = pandas.DataFrame(game_data)
         data = data.transpose().T.set_index(0).T.reset_index(drop = True)
 
-        ## some urls don't have weather data
-        if 'Weather' in data.columns:
-            data[['temperature','humidity','wind_chill']] = data['Weather'].str.split(',',expand=True)
         return data
     except:
         print("This URL: %s doesn't have \'Game Info\' available.\
@@ -81,6 +76,9 @@ def nflscrapR(start_yr,end_yr):
     import time
     import csv
     import os
+    import pandas as pd
+
+    print("Starting now..")
 
     os.chdir("/Users/anhthyngo/ds-projects/nfl-predict/data")
 
@@ -98,8 +96,18 @@ def nflscrapR(start_yr,end_yr):
         try:
             row = get_gameinfo(game)
             game_info = game_info.append(row,ignore_index = True)
+            # be nice
+            time.sleep(1)
         except:
             print(game)
-    print("--- %s seconds to load dataframe ---" % (time.time() - start_time))
 
-    game_info.to_csv('scraped_game_info.csv', index=False)
+    ## some urls don't have weather data
+    game_info[['temperature','humidity','wind_mph','wind_chill']] = game_info['Weather'].str.split(',',expand=True)
+
+    print("--- %s seconds to load dataframe ---" % (time.time() - start_time))
+    file_name = 'scraped-game-info-%s-%s.csv' % (start_yr,end_yr)
+    game_info.to_csv(file_name, index=False)
+
+
+if __name__ == "__main__":
+    nflscrapR(2014,2019)
